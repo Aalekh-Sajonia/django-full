@@ -5,6 +5,8 @@ from .models import Student
 from .serializers import StudentSerializer
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin
 
 
 # Create your views here.
@@ -12,6 +14,44 @@ from rest_framework.views import APIView
 def hello_world(request):
     return Response({"msg": "Aalekh"})
 
+
+# API Model Mixins and generic api view
+class StudentListGeneric(GenericAPIView, ListModelMixin):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+
+class StudentListGenericCreate(GenericAPIView, CreateModelMixin):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+class StudentListGenericRetrieve(GenericAPIView, RetrieveModelMixin):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+class StudentListGenericUpdate(GenericAPIView, UpdateModelMixin):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+class StudentListGenericDestroy(GenericAPIView, DestroyModelMixin):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
 
 # send status code by default takes 200 OK status code
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
