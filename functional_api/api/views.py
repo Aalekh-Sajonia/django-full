@@ -5,8 +5,38 @@ from .models import Student
 from .serializers import StudentSerializer
 from rest_framework import status
 from rest_framework.views import APIView
-from rest_framework.generics import GenericAPIView
-from rest_framework.mixins import ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin
+from rest_framework.generics import GenericAPIView, \
+    ListAPIView,\
+    CreateAPIView, \
+    RetrieveAPIView, \
+    UpdateAPIView,\
+    DestroyAPIView
+from rest_framework.mixins import ListModelMixin,\
+    CreateModelMixin,\
+    RetrieveModelMixin,\
+    UpdateModelMixin,\
+    DestroyModelMixin
+
+# Concrete View Class in Django; there are many combines views as well
+class StudentListConcrete(ListAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+class StudentCreateConcrete(CreateAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+class StudentRetrieveConcrete(RetrieveAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+class StudentUpdateConcrete(UpdateAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+class StudentDestroyConcrete(DestroyAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
 
 
 # Create your views here.
