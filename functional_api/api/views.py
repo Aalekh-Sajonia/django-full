@@ -16,6 +16,12 @@ from rest_framework.mixins import ListModelMixin,\
     RetrieveModelMixin,\
     UpdateModelMixin,\
     DestroyModelMixin
+from rest_framework import viewsets
+
+# ModelViewSet
+class StudentModelViewSet(viewsets.ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
 
 # Concrete View Class in Django; there are many combines views as well
 class StudentListConcrete(ListAPIView):
