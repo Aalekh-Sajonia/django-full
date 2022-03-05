@@ -17,11 +17,15 @@ from rest_framework.mixins import ListModelMixin,\
     UpdateModelMixin,\
     DestroyModelMixin
 from rest_framework import viewsets
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 # ModelViewSet
 class StudentModelViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 # Concrete View Class in Django; there are many combines views as well
 class StudentListConcrete(ListAPIView):
