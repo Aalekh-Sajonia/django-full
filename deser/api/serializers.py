@@ -8,3 +8,10 @@ class StudentSerializer(serializers.Serializer):
 
     def create(self, validate_data):
         return Student.objects.create(**validate_data)
+
+
+class JsonPlaceHolderSerializer(serializers.Serializer):
+    userId = serializers.IntegerField()
+    id = serializers.IntegerField()
+    title = serializers.CharField(max_length=100)
+    completed = serializers.BooleanField()
